@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Ber Can't">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b8ff36"/><stop offset="1" stop-color="#15f5c4"/></linearGradient></defs>
+  <rect width="128" height="128" rx="30" fill="#080b0a"/>
+  <path d="M28 42h16v44H28zm56 0h16v44H84zM44 55h40v18H44zM18 49h10v30H18zm82 0h10v30h-10z" fill="url(#g)"/>
+  <path d="M49 31h30l8 9H41z" fill="#fff" opacity=".9"/>
+</svg>
