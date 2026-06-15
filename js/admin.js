@@ -5,7 +5,7 @@
   const genderNames={male:'Erkek',female:'Kadın',unspecified:'Belirtilmemiş'};
 
   function setupUI(){
-    $('sidebar-toggle').addEventListener('click',()=> $('sidebar').classList.toggle('open')); $('logout-btn').addEventListener('click',Bercant.signOut); $('refresh-btn').addEventListener('click',load);
+    Bercant.setupSidebar(); $('logout-btn').addEventListener('click',Bercant.signOut); $('refresh-btn').addEventListener('click',load);
     document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>b.closest('.modal').classList.remove('open')));
     $('student-modal').addEventListener('click',e=>{if(e.target===$('student-modal'))$('student-modal').classList.remove('open')});
     document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('[data-panel]').forEach(x=>x.classList.toggle('active',x.dataset.panel===b.dataset.tab));}));

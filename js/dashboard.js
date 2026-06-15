@@ -10,7 +10,7 @@
     document.querySelectorAll('[data-open]').forEach(btn => btn.addEventListener('click', () => $(btn.dataset.open)?.classList.add('open')));
     document.querySelectorAll('[data-close]').forEach(btn => btn.addEventListener('click', () => btn.closest('.modal')?.classList.remove('open')));
     document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); }));
-    $('sidebar-toggle').addEventListener('click', () => $('sidebar').classList.toggle('open'));
+    Bercant.setupSidebar();
     $('logout-btn').addEventListener('click', Bercant.signOut);
     $('log-date').value = today(); $('measurement-date').value = today(); $('photo-date').value = today();
     if (Bercant.demoMode) $('demo-banner').classList.remove('hidden');
@@ -42,7 +42,8 @@
     const name = profile.full_name || 'Sporcu', avatar = initials(name);
     $('first-name').textContent = name.split(' ')[0]; $('sidebar-name').textContent = name; $('sidebar-avatar').textContent = avatar;
     $('sidebar-avatar').classList.toggle('female', profile.gender === 'female');
-    $('sidebar-role').textContent = profile.role === 'student' ? 'Öğrenci' : profile.role;
+    $('sidebar-role').textContent = profile.role === 'student' ? 'Öğrenci' : (profile.role === 'admin' ? 'Yönetici' : 'Koç');
+    $('coach-return-link')?.classList.toggle('hidden', !['coach','admin'].includes(profile.role));
     $('profile-name').value = name; $('profile-gender').value = profile.gender || 'unspecified'; $('profile-goal').value = profile.goal || 'recomposition';
     $('profile-height').value = profile.height_cm || ''; $('profile-target').value = profile.target_weight || '';
     const remaining = profile.membership_end ? Math.max(0, Bercant.daysBetween(today(), profile.membership_end)) : null;

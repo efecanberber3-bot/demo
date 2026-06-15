@@ -137,11 +137,44 @@
     return data.session;
   }
 
+
+  function appBaseUrl() {
+    // Demo, özel alan adı ve alt klasör yayınlarında daima mevcut dağıtıma dön.
+    return new URL("./", location.href).href.replace(/\/$/, "");
+  }
+
+  function setupSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const toggle = document.getElementById("sidebar-toggle");
+    const closeButton = document.getElementById("sidebar-close");
+    const backdrop = document.getElementById("sidebar-backdrop");
+    if (!sidebar || !toggle) return null;
+
+    const setOpen = open => {
+      sidebar.classList.toggle("open", open);
+      backdrop?.classList.toggle("open", open);
+      document.body.classList.toggle("sidebar-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+    };
+    const close = () => setOpen(false);
+    toggle.addEventListener("click", () => setOpen(!sidebar.classList.contains("open")));
+    closeButton?.addEventListener("click", close);
+    backdrop?.addEventListener("click", close);
+    sidebar.querySelectorAll("a.side-link, button.side-link").forEach(item => {
+      item.addEventListener("click", () => {
+        if (window.matchMedia("(max-width: 980px)").matches) close();
+      });
+    });
+    window.addEventListener("keydown", event => { if (event.key === "Escape") close(); });
+    window.addEventListener("resize", () => { if (window.innerWidth > 980) close(); }, { passive: true });
+    return { open: () => setOpen(true), close };
+  }
+
   async function signUp({ email, password, fullName, gender, goal }) {
     if (demoMode) throw new Error("Demo modunda yeni üyelik kapalıdır. Supabase bağlantısından sonra kullanılabilir.");
     const { data, error } = await client.auth.signUp({
       email, password,
-      options: { emailRedirectTo: `${cfg.SITE_URL || location.origin}/dashboard.html`, data: { full_name: fullName, gender, goal } }
+      options: { emailRedirectTo: `${appBaseUrl()}/dashboard.html`, data: { full_name: fullName, gender, goal } }
     });
     if (error) throw error;
     return data;
@@ -149,7 +182,7 @@
 
   async function resetPassword(email) {
     if (demoMode) throw new Error("Demo modunda şifre sıfırlama e-postası gönderilmez.");
-    const { error } = await client.auth.resetPasswordForEmail(email, { redirectTo: `${cfg.SITE_URL || location.origin}/login.html?reset=1` });
+    const { error } = await client.auth.resetPasswordForEmail(email, { redirectTo: `${appBaseUrl()}/login.html?reset=1` });
     if (error) throw error;
   }
 
@@ -217,5 +250,5 @@
     return Math.ceil((two - one) / 86400000);
   }
 
-  window.Bercant = { cfg, client, demoMode, hasSupabaseConfig, signIn, signUp, resetPassword, updatePassword, signOut, getSession, getProfile, guard, demo, toast, formatDate, daysBetween, isoDate };
+  window.Bercant = { cfg, client, demoMode, hasSupabaseConfig, signIn, signUp, resetPassword, updatePassword, signOut, getSession, getProfile, guard, demo, toast, formatDate, daysBetween, isoDate, appBaseUrl, setupSidebar };
 })();

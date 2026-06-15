@@ -8,25 +8,28 @@
 <body class="app-body">
 <div class="app-layout">
   <aside class="sidebar" id="sidebar">
-    <a class="brand" href="index.html"><img src="assets/logo.svg" alt=""><strong>BER <span>CAN'T</span></strong></a>
+    <div class="sidebar-head"><a class="brand" href="dashboard.html" aria-label="Öğrenci paneli ana ekranı"><img src="assets/logo.svg" alt=""><strong>BER <span>CAN'T</span></strong></a><button class="icon-btn sidebar-close" id="sidebar-close" type="button" aria-label="Menüyü kapat">×</button></div>
     <nav class="side-nav" aria-label="Öğrenci menüsü">
       <a class="side-link active" href="#overview"><span class="side-icon">⌂</span>Genel Bakış</a>
       <button class="side-link" data-open="daily-modal" type="button"><span class="side-icon">＋</span>Günlük Kayıt</button>
       <button class="side-link" data-open="measurement-modal" type="button"><span class="side-icon">↗</span>Ölçüm Ekle</button>
       <a class="side-link" href="#program"><span class="side-icon">▦</span>Programım</a>
       <button class="side-link" data-open="profile-modal" type="button"><span class="side-icon">◎</span>Profilim</button>
+      <a class="side-link hidden" id="coach-return-link" href="admin.html"><span class="side-icon">←</span>Koç Paneline Dön</a>
+      <a class="side-link" href="index.html"><span class="side-icon">↖</span>Web Sitesi</a>
     </nav>
     <div class="sidebar-footer">
       <div class="user-chip"><div class="avatar" id="sidebar-avatar">--</div><div style="min-width:0"><strong id="sidebar-name">Yükleniyor…</strong><span id="sidebar-role">Öğrenci</span></div></div>
       <button class="btn btn-secondary btn-wide btn-sm" id="logout-btn" style="margin-top:10px">Çıkış Yap</button>
     </div>
   </aside>
+  <button class="sidebar-backdrop" id="sidebar-backdrop" type="button" aria-label="Menüyü kapat"></button>
 
   <main class="app-main" id="overview">
     <div id="demo-banner" class="demo-banner hidden">Sunum modu aktif: kayıtlar yalnızca bu tarayıcıda saklanır. Gerçek kullanım için Supabase ayarlarını bağlayın.</div>
     <header class="app-topbar">
       <div style="display:flex;gap:12px;align-items:flex-start">
-        <button class="icon-btn mobile-sidebar-btn" id="sidebar-toggle" type="button" aria-label="Menüyü aç">☰</button>
+        <button class="icon-btn mobile-sidebar-btn" id="sidebar-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="sidebar">☰</button>
         <div class="app-greeting"><h1>Günaydın, <span id="first-name" class="gradient-text">Sporcu</span></h1><p id="membership-copy">Bugünkü hedeflerin seni bekliyor.</p></div>
       </div>
       <div class="top-actions"><button class="btn btn-secondary btn-sm" data-open="measurement-modal"><span>Ölçüm Ekle</span> ↗</button><button class="btn btn-primary btn-sm" data-open="daily-modal"><span>Bugünü Kaydet</span> ＋</button></div>

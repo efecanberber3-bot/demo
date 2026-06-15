@@ -26,7 +26,7 @@
       <a href="#sistem">Sistem</a><a href="#takip">Takip</a><a href="programlar.html">Koçluk</a><a href="#hakkinda">Hakkında</a><a href="#iletisim">İletişim</a>
     </nav>
     <div class="nav-actions">
-      <a class="btn btn-secondary btn-sm" href="login.html">Üye Girişi</a>
+      <a class="btn btn-secondary btn-sm" id="member-entry" href="login.html">Üye Girişi</a>
       <a class="btn btn-primary btn-sm" href="login.html#register">Başvuruyu Başlat</a>
       <button class="menu-btn" type="button" aria-label="Menüyü aç" aria-controls="nav-links" aria-expanded="false">☰</button>
     </div>
@@ -42,7 +42,7 @@
       <h1>Potansiyelini <span class="gradient-text">sisteme</span> dönüştür.</h1>
       <p class="hero-copy">Kişiye özel antrenman, günlük veri takibi, haftalık ölçüm ve koç geri bildirimi. Plansız ilerleme yerine ölçülebilir bir dönüşüm.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="login.html#register">Koçluğa Başla <span>→</span></a>
+        <a class="btn btn-primary" id="hero-primary-cta" href="login.html#register">Koçluğa Başla <span>→</span></a>
         <a class="btn btn-secondary" href="#sistem">Sistemi İncele</a>
       </div>
       <div class="hero-proof">
@@ -152,5 +152,6 @@
   const menu=document.querySelector('.menu-btn'),nav=document.getElementById('nav-links');
   menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));});
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="js/config.js"></script><script src="js/app-core.js"></script><script src="js/landing.js"></script>
 </body>
 </html>

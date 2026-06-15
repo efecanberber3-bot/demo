@@ -8,23 +8,25 @@
 <body class="app-body">
 <div class="app-layout">
   <aside class="sidebar" id="sidebar">
-    <a class="brand" href="index.html"><img src="assets/logo.svg" alt=""><strong>BER <span>CAN'T</span></strong></a>
+    <div class="sidebar-head"><a class="brand" href="admin.html" aria-label="Koç paneli ana ekranı"><img src="assets/logo.svg" alt=""><strong>BER <span>CAN'T</span></strong></a><button class="icon-btn sidebar-close" id="sidebar-close" type="button" aria-label="Menüyü kapat">×</button></div>
     <nav class="side-nav" aria-label="Koç menüsü">
       <a class="side-link active" href="#overview"><span class="side-icon">⌂</span>Kontrol Merkezi</a>
       <a class="side-link" href="#students"><span class="side-icon">◎</span>Öğrenciler</a>
       <a class="side-link" href="#alerts"><span class="side-icon">!</span>Takip Uyarıları</a>
       <a class="side-link" href="dashboard.html"><span class="side-icon">↗</span>Öğrenci Görünümü</a>
+      <a class="side-link" href="index.html"><span class="side-icon">↖</span>Web Sitesi</a>
     </nav>
     <div class="sidebar-footer">
       <div class="user-chip"><div class="avatar" id="sidebar-avatar">BY</div><div><strong id="sidebar-name">Berkant Yenel</strong><span id="sidebar-role">Yönetici</span></div></div>
       <button class="btn btn-secondary btn-wide btn-sm" id="logout-btn" style="margin-top:10px">Çıkış Yap</button>
     </div>
   </aside>
+  <button class="sidebar-backdrop" id="sidebar-backdrop" type="button" aria-label="Menüyü kapat"></button>
 
   <main class="app-main" id="overview">
     <div id="demo-banner" class="demo-banner hidden">Sunum modu aktif: admin işlemleri bu tarayıcıdaki örnek veriler üzerinde çalışır.</div>
     <header class="app-topbar">
-      <div style="display:flex;gap:12px;align-items:flex-start"><button class="icon-btn mobile-sidebar-btn" id="sidebar-toggle" type="button" aria-label="Menüyü aç">☰</button><div class="app-greeting"><h1>Koç Kontrol <span class="gradient-text">Merkezi</span></h1><p>Öğrencilerin devamlılık, ölçüm ve üyelik durumlarını tek ekrandan yönet.</p></div></div>
+      <div style="display:flex;gap:12px;align-items:flex-start"><button class="icon-btn mobile-sidebar-btn" id="sidebar-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="sidebar">☰</button><div class="app-greeting"><h1>Koç Kontrol <span class="gradient-text">Merkezi</span></h1><p>Öğrencilerin devamlılık, ölçüm ve üyelik durumlarını tek ekrandan yönet.</p></div></div>
       <div class="top-actions"><button class="btn btn-secondary btn-sm" id="refresh-btn">Yenile ↻</button></div>
     </header>
 
