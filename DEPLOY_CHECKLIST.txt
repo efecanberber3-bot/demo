@@ -1,0 +1,15 @@
+BER CAN'T CANLIYA ALMA KONTROLÜ
+==============================
+1. supabase/schema.sql çalıştırıldı.
+2. js/config.js içine Project URL ve anon/publishable key girildi.
+3. DEMO_MODE false yapıldı.
+4. İlk kullanıcı açıldı ve SQL ile admin rolü verildi.
+5. Authentication Site URL bercant.com.tr olarak ayarlandı.
+6. E-posta doğrulama ve şifre sıfırlama test edildi.
+7. Öğrenci hesabıyla günlük kayıt ve ölçüm denendi.
+8. Admin hesabıyla filtre, üyelik, program ve mesaj işlemleri denendi.
+9. progress-photos bucket public=false olarak kontrol edildi.
+10. KVKK metinleri hukuk uzmanına kontrol ettirildi.
+11. Dosyalar GitHub repo kök dizinine yüklendi.
+12. CNAME yalnızca bercant.com.tr içeriyor.
+13. GitHub Pages ve Enforce HTTPS açık.

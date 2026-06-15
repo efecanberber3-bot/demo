@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Üye Girişi | Ber Can't</title><meta name="description" content="Ber Can't öğrenci ve koç paneli girişi.">
+  <meta name="theme-color" content="#060807"><link rel="icon" href="assets/logo.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="auth-page">
+  <section class="auth-visual">
+    <a class="brand" href="index.html"><img src="assets/logo.svg" alt=""><strong>BER <span>CAN'T</span></strong></a>
+    <div class="auth-quote"><span class="eyebrow">Premium Coaching Platform</span><h1>Takip et. <span class="gradient-text">Geliştir.</span> Dönüş.</h1><p>Antrenman, beslenme ve yaşam alışkanlıklarını tek panelde yönet. Koçunun verdiği planı uygula, sonuçlarını görünür hale getir.</p></div>
+    <div class="small muted">bercant.com.tr • Güvenli üyelik altyapısı</div>
+  </section>
+  <section class="auth-panel">
+    <div class="glass-card auth-card">
+      <div><span class="badge">Üye Merkezi</span><h2 style="font-size:2rem;margin-top:13px;letter-spacing:-.04em">Hesabına eriş</h2><p class="muted small" style="margin-top:6px">Öğrenci, koç veya yönetici hesabınla giriş yap.</p></div>
+      <div class="auth-tabs" role="tablist"><button class="auth-tab active" data-auth-tab="login" type="button">Giriş Yap</button><button class="auth-tab" data-auth-tab="register" type="button">Üye Ol</button></div>
+
+      <form id="login-form" class="form-grid" autocomplete="on">
+        <div class="field"><label for="login-email">E-posta</label><input id="login-email" type="email" autocomplete="email" required placeholder="ornek@email.com"></div>
+        <div class="field"><label for="login-password">Şifre</label><input id="login-password" type="password" autocomplete="current-password" required minlength="6" placeholder="••••••••"></div>
+        <div class="form-meta"><label><input type="checkbox" checked> Oturumu açık tut</label><button class="text-link" id="forgot-btn" type="button">Şifremi unuttum</button></div>
+        <div id="login-message" class="form-message" role="alert"></div>
+        <button class="btn btn-primary btn-wide" type="submit">Panele Giriş Yap →</button>
+      </form>
+
+      <form id="register-form" class="form-grid hidden" autocomplete="on">
+        <div class="field"><label for="register-name">Ad Soyad</label><input id="register-name" required maxlength="80" placeholder="Adınız Soyadınız"></div>
+        <div class="field"><label for="register-email">E-posta</label><input id="register-email" type="email" autocomplete="email" required placeholder="ornek@email.com"></div>
+        <div class="field"><label for="register-password">Şifre</label><input id="register-password" type="password" autocomplete="new-password" required minlength="8" placeholder="En az 8 karakter"></div>
+        <div class="field-row">
+          <div class="field"><label for="register-gender">Profil</label><select id="register-gender" required><option value="">Seçiniz</option><option value="male">Erkek</option><option value="female">Kadın</option><option value="unspecified">Belirtmek istemiyorum</option></select></div>
+          <div class="field"><label for="register-goal">Ana hedef</label><select id="register-goal" required><option value="">Seçiniz</option><option value="fat_loss">Yağ yakımı</option><option value="muscle_gain">Kas gelişimi</option><option value="recomposition">Rekompozisyon</option><option value="performance">Performans</option></select></div>
+        </div>
+        <label class="small muted"><input id="consent" type="checkbox" required> Gizlilik ve KVKK metnini okudum, hesabımın oluşturulmasını kabul ediyorum.</label>
+        <div id="register-message" class="form-message" role="alert"></div>
+        <button class="btn btn-primary btn-wide" type="submit">Hesabımı Oluştur →</button>
+      </form>
+
+      <div class="demo-box" id="demo-box">
+        <strong class="small">Sunum için demo girişleri</strong><p class="tiny muted">Supabase bağlanana kadar güvenli gerçek veri yerine tarayıcı içi örnek veri kullanılır.</p>
+        <div class="demo-actions"><button class="btn btn-secondary btn-sm" id="demo-student" type="button">Öğrenci Demosu</button><button class="btn btn-secondary btn-sm" id="demo-admin" type="button">Admin Demosu</button></div>
+      </div>
+      <p class="tiny muted" style="margin-top:16px;text-align:center">Giriş yaparak <a class="text-link" href="gizlilik.html">kullanım ve gizlilik şartlarını</a> kabul etmiş olursunuz.</p>
+    </div>
+  </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script><script src="js/app-core.js"></script><script src="js/login.js"></script>
+</body>
+</html>

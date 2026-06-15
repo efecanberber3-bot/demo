@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Koç Paneli | Ber Can't</title><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#060807">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+</head>
+<body class="app-body">
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="index.html"><img src="assets/logo.svg" alt=""><strong>BER <span>CAN'T</span></strong></a>
+    <nav class="side-nav" aria-label="Koç menüsü">
+      <a class="side-link active" href="#overview"><span class="side-icon">⌂</span>Kontrol Merkezi</a>
+      <a class="side-link" href="#students"><span class="side-icon">◎</span>Öğrenciler</a>
+      <a class="side-link" href="#alerts"><span class="side-icon">!</span>Takip Uyarıları</a>
+      <a class="side-link" href="dashboard.html"><span class="side-icon">↗</span>Öğrenci Görünümü</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-chip"><div class="avatar" id="sidebar-avatar">BY</div><div><strong id="sidebar-name">Berkant Yenel</strong><span id="sidebar-role">Yönetici</span></div></div>
+      <button class="btn btn-secondary btn-wide btn-sm" id="logout-btn" style="margin-top:10px">Çıkış Yap</button>
+    </div>
+  </aside>
+
+  <main class="app-main" id="overview">
+    <div id="demo-banner" class="demo-banner hidden">Sunum modu aktif: admin işlemleri bu tarayıcıdaki örnek veriler üzerinde çalışır.</div>
+    <header class="app-topbar">
+      <div style="display:flex;gap:12px;align-items:flex-start"><button class="icon-btn mobile-sidebar-btn" id="sidebar-toggle" type="button" aria-label="Menüyü aç">☰</button><div class="app-greeting"><h1>Koç Kontrol <span class="gradient-text">Merkezi</span></h1><p>Öğrencilerin devamlılık, ölçüm ve üyelik durumlarını tek ekrandan yönet.</p></div></div>
+      <div class="top-actions"><button class="btn btn-secondary btn-sm" id="refresh-btn">Yenile ↻</button></div>
+    </header>
+
+    <section class="admin-stats">
+      <article class="dash-card"><div class="card-head"><div><p>Aktif öğrenci</p><div class="metric-value" id="stat-active">0</div><div class="metric-sub">Koçluk süresi devam eden</div></div><div class="metric-icon">◎</div></div></article>
+      <article class="dash-card"><div class="card-head"><div><p>Bugün kayıt</p><div class="metric-value" id="stat-today">0</div><div class="metric-sub">Günlük giriş yapan</div></div><div class="metric-icon">✓</div></div></article>
+      <article class="dash-card"><div class="card-head"><div><p>Erkek / Kadın</p><div class="metric-value"><span id="stat-male">0</span><small> / </small><span id="stat-female">0</span></div><div class="metric-sub">Profil dağılımı</div></div><div class="metric-icon">▦</div></div></article>
+      <article class="dash-card"><div class="card-head"><div><p>Yakında bitecek</p><div class="metric-value" id="stat-expiring">0</div><div class="metric-sub">14 gün içinde</div></div><div class="metric-icon">◷</div></div></article>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="dash-card span-8" id="students">
+        <div class="card-head"><div><h2>Öğrenci listesi</h2><p>Profil, hedef ve son aktivite filtreleri</p></div><span class="badge" id="student-count">0 öğrenci</span></div>
+        <div class="filters" style="margin-bottom:15px"><input class="filter-control" id="search-filter" placeholder="İsim veya e-posta ara"><select class="filter-control" id="gender-filter"><option value="all">Tüm profiller</option><option value="male">Erkek</option><option value="female">Kadın</option><option value="unspecified">Belirtilmemiş</option></select><select class="filter-control" id="goal-filter"><option value="all">Tüm hedefler</option><option value="fat_loss">Yağ yakımı</option><option value="muscle_gain">Kas gelişimi</option><option value="recomposition">Rekompozisyon</option><option value="performance">Performans</option></select></div>
+        <div class="data-table-wrap"><table class="data-table"><thead><tr><th>Öğrenci</th><th>Profil</th><th>Hedef</th><th>Son kayıt</th><th>Üyelik</th><th></th></tr></thead><tbody id="students-body"><tr><td colspan="6">Yükleniyor…</td></tr></tbody></table></div>
+      </article>
+
+      <article class="dash-card span-4" id="alerts">
+        <div class="card-head"><div><h2>Takip uyarıları</h2><p>İlgilenmen gereken öğrenciler</p></div><span class="badge danger" id="alert-count">0</span></div>
+        <div class="detail-list" id="alerts-list"><div class="muted small">Uyarı bulunmuyor.</div></div>
+      </article>
+
+      <article class="dash-card span-6">
+        <div class="card-head"><div><h2>Bugünkü devamlılık</h2><p>Aktif öğrencilerin günlük kayıt oranı</p></div><strong class="gradient-text" id="attendance-percent" style="font-size:1.8rem">%0</strong></div>
+        <div class="progress-track" style="height:14px"><div class="progress-fill" id="attendance-progress" style="width:0"></div></div><p class="muted small" id="attendance-copy" style="margin-top:12px">Veri yükleniyor…</p>
+      </article>
+      <article class="dash-card span-6">
+        <div class="card-head"><div><h2>Hedef dağılımı</h2><p>Öğrencilerin ana amaçları</p></div></div>
+        <div class="goal-list" id="goal-distribution"></div>
+      </article>
+    </section>
+  </main>
+</div>
+
+<div class="modal" id="student-modal" role="dialog" aria-modal="true" aria-labelledby="student-modal-title">
+  <div class="modal-card" style="width:min(880px,100%)">
+    <div class="modal-head"><div><span class="badge" id="detail-gender">Öğrenci</span><h2 id="student-modal-title" style="margin-top:8px">Öğrenci detayı</h2><p class="small muted" id="detail-email"></p></div><button class="icon-btn" data-close type="button">×</button></div>
+    <div class="tabs"><button class="tab-btn active" data-tab="summary">Özet</button><button class="tab-btn" data-tab="records">Kayıtlar</button><button class="tab-btn" data-tab="management">Yönetim</button></div>
+    <section class="tab-panel active" data-panel="summary">
+      <div class="student-detail-grid">
+        <div class="dash-card"><div class="card-head"><h3>Profil</h3></div><div class="detail-list" id="detail-profile"></div></div>
+        <div class="dash-card"><div class="card-head"><h3>Son durum</h3></div><div class="detail-list" id="detail-status"></div></div>
+      </div>
+      <div class="dash-card" style="margin-top:15px"><div class="card-head"><div><h3>Son 7 gün</h3><p>Devamlılık ve ortalamalar</p></div></div><div class="admin-stats" style="margin:0"><div><div class="metric-value" id="detail-workouts">0</div><div class="metric-sub">Antrenman</div></div><div><div class="metric-value" id="detail-protein">0g</div><div class="metric-sub">Ort. protein</div></div><div><div class="metric-value" id="detail-sleep">0s</div><div class="metric-sub">Ort. uyku</div></div><div><div class="metric-value" id="detail-steps">0</div><div class="metric-sub">Ort. adım</div></div></div></div>
+    </section>
+    <section class="tab-panel" data-panel="records"><div class="data-table-wrap"><table class="data-table"><thead><tr><th>Tarih</th><th>Antrenman</th><th>Protein</th><th>Su</th><th>Uyku</th><th>Adım</th></tr></thead><tbody id="detail-records"></tbody></table></div></section>
+    <section class="tab-panel" data-panel="management">
+      <div class="student-detail-grid">
+        <form class="dash-card form-grid" id="membership-form"><div class="card-head"><h3>Üyelik yönetimi</h3></div><div class="field-row"><div class="field"><label for="membership-start">Başlangıç</label><input id="membership-start" type="date"></div><div class="field"><label for="membership-end">Bitiş</label><input id="membership-end" type="date"></div></div><div class="field"><label for="membership-active">Durum</label><select id="membership-active"><option value="true">Aktif</option><option value="false">Pasif</option></select></div><button class="btn btn-primary" type="submit">Üyeliği Güncelle</button></form>
+        <form class="dash-card form-grid" id="assignment-form"><div class="card-head"><h3>Program ata</h3></div><div class="field"><label for="program-select">Program şablonu</label><select id="program-select"></select></div><div class="field-row"><div class="field"><label for="assignment-start">Başlangıç</label><input id="assignment-start" type="date"></div><div class="field"><label for="assignment-end">Bitiş</label><input id="assignment-end" type="date"></div></div><button class="btn btn-secondary" type="submit">Programı Ata</button></form>
+      </div>
+      <form class="dash-card form-grid" id="message-form" style="margin-top:15px"><div class="card-head"><h3>Koç mesajı gönder</h3></div><div class="field"><label for="coach-message-input">Mesaj</label><textarea id="coach-message-input" maxlength="1200" required placeholder="Bu haftaki değerlendirme ve hedef…"></textarea></div><button class="btn btn-primary" type="submit">Mesajı Panele Gönder</button></form>
+    </section>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="js/config.js"></script><script src="js/app-core.js"></script><script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Öğrenci Paneli | Ber Can't</title><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#060807">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+</head>
+<body class="app-body">
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="index.html"><img src="assets/logo.svg" alt=""><strong>BER <span>CAN'T</span></strong></a>
+    <nav class="side-nav" aria-label="Öğrenci menüsü">
+      <a class="side-link active" href="#overview"><span class="side-icon">⌂</span>Genel Bakış</a>
+      <button class="side-link" data-open="daily-modal" type="button"><span class="side-icon">＋</span>Günlük Kayıt</button>
+      <button class="side-link" data-open="measurement-modal" type="button"><span class="side-icon">↗</span>Ölçüm Ekle</button>
+      <a class="side-link" href="#program"><span class="side-icon">▦</span>Programım</a>
+      <button class="side-link" data-open="profile-modal" type="button"><span class="side-icon">◎</span>Profilim</button>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-chip"><div class="avatar" id="sidebar-avatar">--</div><div style="min-width:0"><strong id="sidebar-name">Yükleniyor…</strong><span id="sidebar-role">Öğrenci</span></div></div>
+      <button class="btn btn-secondary btn-wide btn-sm" id="logout-btn" style="margin-top:10px">Çıkış Yap</button>
+    </div>
+  </aside>
+
+  <main class="app-main" id="overview">
+    <div id="demo-banner" class="demo-banner hidden">Sunum modu aktif: kayıtlar yalnızca bu tarayıcıda saklanır. Gerçek kullanım için Supabase ayarlarını bağlayın.</div>
+    <header class="app-topbar">
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <button class="icon-btn mobile-sidebar-btn" id="sidebar-toggle" type="button" aria-label="Menüyü aç">☰</button>
+        <div class="app-greeting"><h1>Günaydın, <span id="first-name" class="gradient-text">Sporcu</span></h1><p id="membership-copy">Bugünkü hedeflerin seni bekliyor.</p></div>
+      </div>
+      <div class="top-actions"><button class="btn btn-secondary btn-sm" data-open="measurement-modal"><span>Ölçüm Ekle</span> ↗</button><button class="btn btn-primary btn-sm" data-open="daily-modal"><span>Bugünü Kaydet</span> ＋</button></div>
+    </header>
+
+    <section class="dashboard-grid" aria-label="Öğrenci özeti">
+      <article class="dash-card span-3"><div class="card-head"><div><p>Mevcut kilo</p><div class="metric-value"><span id="metric-weight">—</span> <small>kg</small></div><div class="metric-sub" id="metric-weight-diff">Henüz ölçüm yok</div></div><div class="metric-icon">⚖</div></div></article>
+      <article class="dash-card span-3"><div class="card-head"><div><p>Günlük seri</p><div class="metric-value"><span id="metric-streak">0</span> <small>gün</small></div><div class="metric-sub">İstikrar puanın</div></div><div class="metric-icon">⚡</div></div></article>
+      <article class="dash-card span-3"><div class="card-head"><div><p>Haftalık antrenman</p><div class="metric-value"><span id="metric-workouts">0</span><small>/7</small></div><div class="metric-sub">Son yedi gün</div></div><div class="metric-icon">⌁</div></div></article>
+      <article class="dash-card span-3"><div class="card-head"><div><p>Üyelik</p><div class="metric-value"><span id="metric-days">—</span> <small>gün</small></div><div class="metric-sub">Kalan koçluk süresi</div></div><div class="metric-icon">◷</div></div></article>
+
+      <article class="dash-card span-7">
+        <div class="card-head"><div><h2>Kilo gelişimi</h2><p>Son ölçümlere göre değişim</p></div><span class="badge" id="weight-trend-badge">Takip</span></div>
+        <div class="chart-wrap" id="weight-chart"><div class="chart-empty">Ölçüm eklediğinde grafik burada görünecek.</div></div>
+      </article>
+      <article class="dash-card span-5">
+        <div class="card-head"><div><h2>Bugünkü hedefler</h2><p id="today-copy">Kayıt bekleniyor</p></div><strong class="gradient-text" id="today-percent" style="font-size:1.7rem">%0</strong></div>
+        <div class="goal-list">
+          <div class="goal-row"><span>Antrenman</span><div class="progress-track"><div class="progress-fill" id="goal-workout" style="width:0"></div></div><strong id="goal-workout-text">—</strong></div>
+          <div class="goal-row"><span>Protein</span><div class="progress-track"><div class="progress-fill" id="goal-protein" style="width:0"></div></div><strong id="goal-protein-text">0g</strong></div>
+          <div class="goal-row"><span>Su</span><div class="progress-track"><div class="progress-fill" id="goal-water" style="width:0"></div></div><strong id="goal-water-text">0L</strong></div>
+          <div class="goal-row"><span>Adım</span><div class="progress-track"><div class="progress-fill" id="goal-steps" style="width:0"></div></div><strong id="goal-steps-text">0</strong></div>
+          <div class="goal-row"><span>Uyku</span><div class="progress-track"><div class="progress-fill" id="goal-sleep" style="width:0"></div></div><strong id="goal-sleep-text">0s</strong></div>
+        </div>
+      </article>
+
+      <article class="dash-card span-7">
+        <div class="card-head"><div><h2>7 günlük devamlılık</h2><p>Her kayıt serini güçlendirir</p></div><span class="badge purple" id="streak-badge">0 günlük seri</span></div>
+        <div class="streak" id="streak-row"></div>
+      </article>
+      <article class="dash-card span-5">
+        <div class="card-head"><div><h2>Koçundan mesaj</h2><p>Son değerlendirme</p></div><span class="badge">Yeni</span></div>
+        <div class="coach-message"><p id="coach-message">Henüz koç mesajı bulunmuyor.</p><div class="coach-sign"><div class="avatar" style="width:30px;height:30px;border-radius:10px;font-size:.7rem">BY</div><span>Berkant Yenel</span></div></div>
+      </article>
+
+      <article class="dash-card span-12" id="program">
+        <div class="card-head"><div><h2 id="program-title">Programım</h2><p id="program-description">Atanmış program yükleniyor…</p></div><span class="badge neutral" id="program-level">—</span></div>
+        <div class="program-days" id="program-days"><div class="chart-empty" style="height:120px">Program atanmadı.</div></div>
+      </article>
+
+      <article class="dash-card span-6">
+        <div class="card-head"><div><h2>Son günlük kayıtlar</h2><p>Antrenman ve yaşam verileri</p></div><button class="btn btn-secondary btn-sm" data-open="daily-modal">Yeni kayıt</button></div>
+        <div class="detail-list" id="recent-logs"><div class="muted small">Kayıt bulunamadı.</div></div>
+      </article>
+      <article class="dash-card span-6">
+        <div class="card-head"><div><h2>İlerleme fotoğrafı</h2><p>Özel ve kullanıcıya bağlı depolama</p></div><span class="badge neutral">Gizli</span></div>
+        <form id="photo-form" class="form-grid"><div class="field"><label for="progress-photo">Ön, yan veya arka görünüm</label><input id="progress-photo" type="file" accept="image/jpeg,image/png,image/webp" required></div><div class="field-row"><div class="field"><label for="photo-type">Görünüm</label><select id="photo-type"><option value="front">Ön</option><option value="side">Yan</option><option value="back">Arka</option></select></div><div class="field"><label for="photo-date">Tarih</label><input id="photo-date" type="date" required></div></div><button class="btn btn-secondary" type="submit">Fotoğrafı Güvenli Yükle</button><p class="tiny muted">Maksimum 5 MB. Gerçek modda dosyalar private Supabase bucket içinde tutulur.</p></form>
+      </article>
+    </section>
+  </main>
+</div>
+
+<div class="modal" id="daily-modal" role="dialog" aria-modal="true" aria-labelledby="daily-title">
+  <div class="modal-card"><div class="modal-head"><div><span class="badge">Günlük Takip</span><h2 id="daily-title" style="margin-top:8px">Bugünün kaydı</h2></div><button class="icon-btn" data-close type="button">×</button></div>
+    <form id="daily-form" class="form-grid">
+      <div class="field-row"><div class="field"><label for="log-date">Tarih</label><input id="log-date" type="date" required></div><div class="field"><label for="split">Split / Gün</label><input id="split" maxlength="60" placeholder="Push, Pull, Legs…"></div></div>
+      <div class="field-row"><div class="field"><label for="workout-done">Antrenman</label><select id="workout-done"><option value="true">Tamamlandı</option><option value="false">Dinlenme / Yapılmadı</option></select></div><div class="field"><label for="total-sets">Toplam set</label><input id="total-sets" type="number" min="0" max="100" value="0"></div></div>
+      <div class="field-row"><div class="field"><label for="main-lift">Ana hareket</label><input id="main-lift" maxlength="80" placeholder="Bench Press"></div><div class="field"><label for="main-lift-kg">Ağırlık (kg)</label><input id="main-lift-kg" type="number" min="0" max="1000" step="0.5"></div></div>
+      <div class="field-row"><div class="field"><label for="rpe">RPE (1–10)</label><input id="rpe" type="number" min="1" max="10" step="0.5"></div><div class="field"><label for="cardio">Kardiyo (dk)</label><input id="cardio" type="number" min="0" max="500"></div></div>
+      <div class="field-row"><div class="field"><label for="steps">Adım</label><input id="steps" type="number" min="0" max="100000"></div><div class="field"><label for="calories">Kalori</label><input id="calories" type="number" min="0" max="10000"></div></div>
+      <div class="field-row"><div class="field"><label for="protein">Protein (g)</label><input id="protein" type="number" min="0" max="1000"></div><div class="field"><label for="carbs">Karbonhidrat (g)</label><input id="carbs" type="number" min="0" max="1500"></div></div>
+      <div class="field-row"><div class="field"><label for="fat">Yağ (g)</label><input id="fat" type="number" min="0" max="500"></div><div class="field"><label for="water">Su (L)</label><input id="water" type="number" min="0" max="15" step="0.1"></div></div>
+      <div class="field-row"><div class="field"><label for="sleep">Uyku (saat)</label><input id="sleep" type="number" min="0" max="24" step="0.1"></div><div class="field"><label for="energy">Enerji (1–5)</label><input id="energy" type="number" min="1" max="5"></div></div>
+      <div class="field-row"><div class="field"><label for="mood">Ruh hali (1–5)</label><input id="mood" type="number" min="1" max="5"></div><div class="field"><label for="pump">Pump (1–5)</label><input id="pump" type="number" min="1" max="5"></div></div>
+      <div class="field"><label for="daily-notes">Günlük not</label><textarea id="daily-notes" maxlength="1000" placeholder="Bugün nasıl geçti?"></textarea></div>
+      <button class="btn btn-primary btn-wide" type="submit">Kaydı Güvenle Sakla</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="measurement-modal" role="dialog" aria-modal="true" aria-labelledby="measurement-title">
+  <div class="modal-card"><div class="modal-head"><div><span class="badge">Haftalık Kontrol</span><h2 id="measurement-title" style="margin-top:8px">Yeni ölçüm</h2></div><button class="icon-btn" data-close type="button">×</button></div>
+    <form id="measurement-form" class="form-grid">
+      <div class="field-row"><div class="field"><label for="measurement-date">Tarih</label><input id="measurement-date" type="date" required></div><div class="field"><label for="weight-kg">Kilo (kg)</label><input id="weight-kg" type="number" min="20" max="400" step="0.1" required></div></div>
+      <div class="field-row"><div class="field"><label for="body-fat">Tahmini yağ oranı (%)</label><input id="body-fat" type="number" min="2" max="70" step="0.1"></div><div class="field"><label for="waist-cm">Bel (cm)</label><input id="waist-cm" type="number" min="30" max="250" step="0.1"></div></div>
+      <div class="field-row"><div class="field"><label for="chest-cm">Göğüs (cm)</label><input id="chest-cm" type="number" min="30" max="250" step="0.1"></div><div class="field"><label for="hips-cm">Kalça (cm)</label><input id="hips-cm" type="number" min="30" max="250" step="0.1"></div></div>
+      <div class="field-row"><div class="field"><label for="arm-cm">Kol (cm)</label><input id="arm-cm" type="number" min="10" max="100" step="0.1"></div><div class="field"><label for="thigh-cm">Bacak (cm)</label><input id="thigh-cm" type="number" min="20" max="150" step="0.1"></div></div>
+      <div class="field"><label for="measurement-notes">Not</label><textarea id="measurement-notes" maxlength="800" placeholder="Ölçüm koşulları, hissiyat…"></textarea></div>
+      <button class="btn btn-primary btn-wide" type="submit">Ölçümü Kaydet</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="profile-modal" role="dialog" aria-modal="true" aria-labelledby="profile-title">
+  <div class="modal-card"><div class="modal-head"><div><span class="badge">Profil</span><h2 id="profile-title" style="margin-top:8px">Kişisel bilgiler</h2></div><button class="icon-btn" data-close type="button">×</button></div>
+    <form id="profile-form" class="form-grid">
+      <div class="field"><label for="profile-name">Ad Soyad</label><input id="profile-name" maxlength="80" required></div>
+      <div class="field-row"><div class="field"><label for="profile-gender">Profil</label><select id="profile-gender"><option value="male">Erkek</option><option value="female">Kadın</option><option value="unspecified">Belirtmek istemiyorum</option></select></div><div class="field"><label for="profile-goal">Hedef</label><select id="profile-goal"><option value="fat_loss">Yağ yakımı</option><option value="muscle_gain">Kas gelişimi</option><option value="recomposition">Rekompozisyon</option><option value="performance">Performans</option></select></div></div>
+      <div class="field-row"><div class="field"><label for="profile-height">Boy (cm)</label><input id="profile-height" type="number" min="100" max="250"></div><div class="field"><label for="profile-target">Hedef kilo (kg)</label><input id="profile-target" type="number" min="20" max="400" step="0.1"></div></div>
+      <button class="btn btn-primary btn-wide" type="submit">Profili Güncelle</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="js/config.js"></script><script src="js/app-core.js"></script><script src="js/dashboard.js"></script>
+</body>
+</html>

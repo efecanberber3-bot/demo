@@ -1,0 +1,9 @@
+{
+  "name": "Ber Can't Premium Coaching",
+  "short_name": "Ber Can't",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#060807",
+  "theme_color": "#b8ff36",
+  "icons": [{"src":"assets/logo.svg","sizes":"any","type":"image/svg+xml"}]
+}
