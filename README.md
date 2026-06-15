@@ -115,3 +115,11 @@ supabase/schema.sql     Veritabanı, RLS ve örnek programlar
 - [ ] Fotoğraf bucket'ı private durumda
 - [ ] KVKK/yasal metinler tamamlandı
 - [ ] Sahte istatistik veya doğrulanmamış iddia kullanılmıyor
+
+
+## v1.1 düzeltmeleri
+- Sidebar butonlarındaki beyaz tarayıcı stili kaldırıldı.
+- Mobil menüye karartma alanı, kapatma butonu ve kaydırma kilidi eklendi.
+- Panel logosu artık ana sayfaya değil ilgili panele döner.
+- Ana sayfada oturum açıkken “Panele Dön” bağlantısı gösterilir.
+- Demo ve canlı ortam auth yönlendirmeleri mevcut alan adına/alt klasöre göre otomatik hesaplanır.
