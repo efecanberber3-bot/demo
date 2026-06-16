@@ -127,3 +127,31 @@ img{max-width:100%;display:block}
   .container{width:min(100% - 26px,1180px)}.section{padding:80px 0}.nav{height:70px}.site-header .btn-primary{display:none}.hero{padding-top:110px}.hero h1{font-size:clamp(3rem,17vw,5rem)}.hero-copy{font-size:.96rem}.preview-shell{transform:none}.feature-grid,.ring-row,.footer-grid,.student-detail-grid{grid-template-columns:1fr}.cta-panel{padding:29px;display:block}.cta-panel .btn{margin-top:22px}.footer-bottom{align-items:flex-start;flex-direction:column}.auth-visual{padding:28px;min-height:380px}.auth-panel{padding:25px 14px}.auth-card{padding:24px}.field-row{grid-template-columns:1fr}.app-main{padding:17px 13px 55px}.app-topbar{align-items:flex-start}.top-actions .btn span{display:none}.dashboard-grid{gap:11px}.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-12{grid-column:span 12}.admin-stats{grid-template-columns:1fr 1fr}.dash-card{padding:17px}.goal-row{grid-template-columns:93px 1fr 45px}.exercise-row{grid-template-columns:1fr 45px 55px}.exercise-row span:nth-child(4){display:none}.modal-card{padding:18px}.hero-proof{gap:13px}.proof-item{font-size:.77rem}.app-greeting h1{font-size:1.65rem}
 }
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+
+/* EB Digital Studio — project signature */
+.eb-studio-credit{
+  display:inline-flex;align-items:center;gap:10px;margin-left:auto;padding:8px 11px 8px 9px;
+  border:1px solid rgba(104,145,255,.16);border-radius:13px;color:#dbe5ff;
+  background:linear-gradient(135deg,rgba(37,99,235,.07),rgba(168,85,247,.055));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035);transition:transform .22s ease,border-color .22s ease,background .22s ease,box-shadow .22s ease;
+  text-decoration:none;white-space:nowrap
+}
+.eb-studio-credit:hover{
+  transform:translateY(-2px);color:#fff;border-color:rgba(104,145,255,.38);
+  background:linear-gradient(135deg,rgba(37,99,235,.13),rgba(168,85,247,.11));
+  box-shadow:0 10px 30px rgba(24,60,180,.12),0 0 24px rgba(139,92,246,.08)
+}
+.eb-studio-credit:focus-visible{outline:2px solid #60a5fa;outline-offset:3px}
+.eb-studio-mark{width:31px;height:31px;display:block;flex:0 0 31px;filter:drop-shadow(0 0 9px rgba(59,130,246,.26))}
+.eb-studio-copy{display:grid;gap:1px;line-height:1.05;text-align:left}
+.eb-studio-copy small{font-size:.57rem;text-transform:uppercase;letter-spacing:.13em;color:#77849b;font-weight:650}
+.eb-studio-copy strong{font-size:.76rem;letter-spacing:.055em;color:#e8eeff;font-weight:800}
+.eb-studio-arrow{font-size:.8rem;color:#8b9dcb;transition:transform .22s ease,color .22s ease}
+.eb-studio-credit:hover .eb-studio-arrow{transform:translate(2px,-2px);color:#a78bfa}
+@media(max-width:760px){
+  .footer-bottom .eb-studio-credit{margin-left:0;margin-top:5px;width:max-content;max-width:100%}
+}
+@media(max-width:390px){
+  .eb-studio-copy small{display:none}.eb-studio-credit{padding-right:10px}
+}
